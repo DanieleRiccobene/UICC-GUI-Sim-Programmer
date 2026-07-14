@@ -71,7 +71,6 @@ sudo apt install build-essential python3 python3-tk
 uicc_programmer/
 ├── README.md                  ← this file
 ├── uicc_gui.py                ← the graphical interface (Python/Tkinter)
-├── uicc-v3.3.tgz              ← original OpenCells source archive
 └── uicc-v3.3/
     ├── program_uicc.c         ← main CLI program (orchestration + options)
     ├── uicc.h                 ← APDU protocol, file tables, encoding helpers

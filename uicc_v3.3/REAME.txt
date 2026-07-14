@@ -1,0 +1,37 @@
+To compile
+================
+
+# make
+For raw protocol reader
+
+or 
+
+# make program_uicc_pcsc
+For raw and pc/sc readers support
+You may have to adapt Makefile to your directories for the libccid.so file and the PCSC include directory
+The package, on debian style can be installed with
+#apt install libccid
+
+To use
+===============
+*** With raw reader, full options (set all values in the card)
+
+# sudo program_uicc --port /dev/ttyUSB0 --adm 12345678 --iccid 89860061100000000123 --imsi 208920100001123 --isdn 00000$i --acc 0001 --key 6874736969202073796d4b2079650a73 --opc 504f20634f6320504f50206363500a4f -spn OpenCells --authenticate
+
+*** If you use PC/SC reader
+# apt install libpcsclite-dev
+# LD_LIBRARY_PATH=/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Linux ./program_uicc_pcsc --port usb:08e6/3437 --adm 12345678 --iccid 89860061100000000123 --imsi 208920100001123 --isdn 00000$i --acc 0001 --key 6874736969202073796d4b2079650a73 --opc 504f20634f6320504f50206363500a4f -spn OpenCells --authenticate
+
+The library path may change on your linux distrbution
+
+*** The port value setting is:
+
+For raw readers
+If you have no other serial, it should be  /dev/ttyUSB0  (default). Else, the tty number will be in "dmesg" command result for example
+
+For PC/SC readers
+#lsusb
+You will recognize your reader like:
+Bus 001 Device 011: ID 08e6:3437 Gemalto (was Gemplus) GemPC Twin SmartCard Reader
+The --port value for this example is usb:08e6/3437 (note the ":" is replaced by "/" in libccid)
+
